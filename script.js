@@ -48,7 +48,7 @@ const display = () => {
     show.innerHTML = ""
     allNote.map((note, i) => {
         show.innerHTML += `
-<tr>
+<tr class="text-center ">
         <td class="fs-3"> ${i + 1}.</td>
          <td class="fs-3">${note}</td>
 

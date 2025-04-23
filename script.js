@@ -1,5 +1,5 @@
 const allNote = []
-
+let itemToEditIndex = ""
 const addNote = () => {
     if (note.value.trim() === "") {
         alert('fill in something')
@@ -22,14 +22,34 @@ const delNote = (index) => {
 
 }
 
+
+const editNote = (item, i ) => {
+    update.style.display = 'block'
+    add.style.display = 'none'
+    note.value = item
+    itemToEditIndex = i
+}
+
+const updateNote = () => {
+    if(note.value === ""){
+       alert('Fill in something please')
+    }else{
+        update.style.display = 'none'
+        add.style.display = 'block'
+        allNote.splice(itemToEditIndex,1,note.value)
+        display()
+        note.value = ""
+    }
+}
+
 const display = () => {
     show.innerHTML = ""
     allNote.map((note, i) => {
         show.innerHTML += `
      <div>
      <p>${i + 1}.${note}</p>
-     <button onclick="editNote()">Edit</button>
-     <button onclick="delNote(${i})">Delete</button>
+     <button onclick='editNote(${JSON.stringify(note)}, ${i})'>Edit</button>
+     <button onclick='delNote(${i})'>Delete</button>
      </div>
      `
     })

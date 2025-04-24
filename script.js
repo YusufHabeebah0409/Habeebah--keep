@@ -28,7 +28,7 @@ const delNote = (index) => {
 const editNote = (item, i) => {
     update.style.display = 'block'
     add.style.display = 'none'
-    note.value = item
+    newNote.value = item
     itemToEditIndex = i
 }
 
@@ -38,9 +38,9 @@ const updateNote = () => {
     } else {
         update.style.display = 'none'
         add.style.display = 'block'
-        allNote.splice(itemToEditIndex, 1, note.value)
+        allNote.splice(itemToEditIndex, 1, newNote.value)
         display()
-        note.value = ""
+        newNote.value = ""
     }
 }
 
@@ -48,18 +48,18 @@ const display = () => {
     show.innerHTML = ""
     allNote.map((note, i) => {
         show.innerHTML += `
-<tr class="text-center ">
+ <tr class="text-center ">
         <td class="fs-3"> ${i + 1}.</td>
          <td class="fs-3">${note}</td>
 
     <td> 
-     <button onclick='editNote(${JSON.stringify(note)}, ${i})'    class="btn btn-success w-50">Edit</button>
+     <button onclick='editNote(${JSON.stringify(note)}, ${i})'    class="btn btn-success w-50" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
     </td>
 
      <td> 
      <button onclick='delNote(${i})'class="btn btn-danger w-50">Delete</button>
      </td>
-</tr>
+ </tr>
      `
     })
 }
